@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Save Gulf Strean — Saving the Gulf Stream</title>
-  <meta name="description" content="Save Gulf Strean — practical, cost-effective measures to protect the AMOC and the Gulf Stream from freshwater disruption originating in Greenland."/>
+  <title>Save Gulf Stream — Saving the Gulf Stream</title>
+  <meta name="description" content="Save Gulf Stream — practical, cost-effective measures to protect the AMOC and the Gulf Stream from freshwater disruption originating in Greenland."/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#f6f8fb;
@@ -27,23 +28,32 @@
       line-height:1.5;
     }
     a{color:inherit}
-    header{
-      background:linear-gradient(90deg,var(--accent), #003763);
-      color:white;
-      padding:18px 20px;
-      position:sticky;
-      top:0;
-      z-index:30;
-      box-shadow:0 6px 18px rgba(2,6,23,0.12);
+
+    /* Шапка */
+    header {
+      background: linear-gradient(90deg, #004b87, #e6332a);
+      color: white;
+      padding: 18px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;display:flex;align-items:center;width:100%}
     .brand{display:flex;gap:14px;align-items:center}
-    .logo{
-      width:44px;height:44px;border-radius:8px;
-      background:linear-gradient(180deg,var(--gold),#f0b800);
-      display:inline-grid;place-items:center;font-weight:800;color:#003763;
-      box-shadow:0 4px 10px rgba(2,6,23,0.18);
+
+    .brand img {
+      height:48px;
+      width:auto;
+      border-radius:6px;
+      background:white;
+      padding:2px;
     }
+
     header nav{margin-left:auto;display:flex;gap:18px;align-items:center}
     header nav a{color:rgba(255,255,255,0.95);font-weight:600}
     header .contact{font-size:0.95rem;opacity:0.95;margin-left:18px}
@@ -117,12 +127,12 @@
 </head>
 <body>
   <header>
-    <div class="container" style="display:flex;align-items:center;">
+    <div class="container">
       <div class="brand">
-        <div class="logo" aria-hidden="true">SGS</div>
+        <img src="savegulfstream.jpg" alt="Save Gulf Stream logo">
         <div>
-          <div style="font-weight:800">Save Gulf Strean</div>
-          <div style="font-size:0.85rem;opacity:0.9">savegulfstrean.org</div>
+          <div style="font-weight:800">Save Gulf Stream</div>
+          <div style="font-size:0.85rem;opacity:0.9">savegulfstream.org</div>
         </div>
       </div>
 
@@ -131,7 +141,7 @@
         <a href="#watson">Watson River</a>
         <a href="#freshwater">Freshwater</a>
         <a href="#jakobshavn">Jakobshavn</a>
-        <a href="#contact" class="contact" style="margin-left:18px;color:#fff;font-weight:600">info@savegulfstrean.org</a>
+        <a href="#contact" class="contact">info@savegulfstream.org</a>
       </nav>
     </div>
   </header>
@@ -150,7 +160,7 @@
           <h1 id="tech-heading">Protecting the AMOC and the Gulf Stream</h1>
           <p class="lead">The Atlantic Meridional Overturning Circulation (AMOC) and its key component — the Gulf Stream — face the risk of slowdown or collapse due to freshwater runoff from the Greenland Ice Sheet. Although the total freshwater volume is small on an oceanic scale, it forms a light surface layer that disrupts heat exchange and ocean circulation.</p>
 
-          <div class="cta-row" aria-hidden="false">
+          <div class="cta-row">
             <a class="btn" href="#watson">Explore Watson River plan</a>
             <a class="btn secondary" href="#freshwater">Learn how freshwater behaves</a>
           </div>
@@ -237,7 +247,7 @@
       <div class="card">
         <h2 class="section-title">Get in touch</h2>
         <p class="subtle">For collaboration, technical details, donations, or partnership inquiries, contact us:</p>
-        <p style="margin-top:12px;font-weight:700"><a href="mailto:info@savegulfstrean.org">info@savegulfstrean.org</a></p>
+        <p style="margin-top:12px;font-weight:700"><a href="mailto:info@savegulfstream.org">info@savegulfstream.org</a></p>
 
         <p class="muted" style="margin-top:10px">This page will be expanded with technical appendices, data, and project roadmaps as the site is developed.</p>
       </div>
@@ -246,7 +256,7 @@
 
   <footer>
     <div class="container">
-      <div style="margin-bottom:8px">© <span id="year"></span> Save Gulf Strean — savegulfstrean.org</div>
+      <div style="margin-bottom:8px">© <span id="year"></span> Save Gulf Stream — savegulfstream.org</div>
       <div class="muted">All content presented here is conceptual and intended for discussion and development of practical solutions for ocean circulation protection.</div>
     </div>
   </footer>
