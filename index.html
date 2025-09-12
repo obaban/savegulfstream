@@ -11,62 +11,112 @@
     :root{
       --bg:#f6f8fb;
       --accent:#004b87;
-      --gold:#ffd24d;
+      --red:#e6332a;
       --muted:#6b7280;
       --card:#ffffff;
       --maxw:1100px;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    *{box-sizing:border-box}
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
     html,body{height:100%}
+
     body{
-      margin:0;
       background:var(--bg);
       color:#0b1220;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
     }
-    a{color:inherit}
 
-    /* Шапка */
+    a{color:inherit;text-decoration:none}
+
+    /* === HEADER === */
     header {
-      background: linear-gradient(90deg, #004b87, #e6332a);
+      background: linear-gradient(90deg, var(--accent), var(--red));
       color: white;
-      padding: 18px 20px;
+      padding: 12px 20px;
       position: sticky;
       top: 0;
       z-index: 30;
       box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+    }
+
+    .header-container {
+      max-width: var(--maxw);
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;display:flex;align-items:center;width:100%}
-    .brand{display:flex;gap:14px;align-items:center}
-
-    .brand img {
-      height:48px;
-      width:auto;
-      border-radius:6px;
-      background:white;
-      padding:2px;
+    /* Блок слева: логотип + название */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-    header nav{margin-left:auto;display:flex;gap:18px;align-items:center}
-    header nav a{color:rgba(255,255,255,0.95);font-weight:600}
-    header .contact{font-size:0.95rem;opacity:0.95;margin-left:18px}
+    .brand img {
+      height: 64px;
+      width: auto;
+      display: block;
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+    }
 
-    /* Hero / Technology top */
-    .hero{
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+    }
+
+    .brand-text .title {
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-text .subtitle {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* Меню */
+    header nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    header nav a {
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    header nav a:hover {
+      opacity: 0.8;
+    }
+
+    header .contact {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-left: 18px;
+    }
+
+    /* === HERO === */
+    .hero {
       display:grid;
       grid-template-columns:1fr;
       gap:28px;
       align-items:center;
       padding:48px 0;
     }
-    .hero-card{
+
+    .hero-card {
       background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
       border-radius:14px;
       box-shadow:0 18px 50px rgba(2,6,23,0.10);
@@ -75,64 +125,113 @@
       gap:28px;
       align-items:center;
     }
-    .left{
-      flex:1;
-    }
-    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:#eaf3ff;color:var(--accent);font-weight:700;font-size:0.85rem}
-    h1{margin:14px 0 8px;font-size:1.8rem}
-    p.lead{margin:0;color:var(--muted);font-size:1.02rem}
-    .cta-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      background:var(--accent);
-      color:white;padding:12px 18px;border-radius:10px;font-weight:700;
-      box-shadow:0 10px 22px rgba(2,6,23,0.12);border:none;cursor:pointer;text-decoration:none;
-    }
-    .btn.secondary{background:transparent;color:var(--accent);border:2px solid rgba(0,75,135,0.12)}
 
-    /* Right info box */
-    .tech-box{
-      width:360px;max-width:38%;
+    .left { flex:1; }
+
+    .kicker {
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eaf3ff;
+      color:var(--accent);
+      font-weight:700;
+      font-size:0.85rem;
+    }
+
+    h1 {margin:14px 0 8px;font-size:1.8rem}
+    p.lead {margin:0;color:var(--muted);font-size:1.02rem}
+
+    .cta-row {
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn {
+      background:var(--accent);
+      color:white;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:700;
+      box-shadow:0 10px 22px rgba(2,6,23,0.12);
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .btn.secondary {
+      background:transparent;
+      color:var(--accent);
+      border:2px solid rgba(0,75,135,0.12);
+    }
+
+    /* Блок справа */
+    .tech-box {
+      width:360px;
+      max-width:38%;
       background:linear-gradient(180deg,#fbfdff,#ffffff);
-      border-radius:12px;padding:18px;border:1px solid rgba(2,6,23,0.04);
+      border-radius:12px;
+      padding:18px;
+      border:1px solid rgba(2,6,23,0.04);
       box-shadow:0 8px 30px rgba(2,6,23,0.06);
     }
-    .tech-box h2{font-size:1.05rem;margin:0 0 8px}
-    .tech-box p{margin:0;color:var(--muted);font-size:0.95rem}
 
-    /* Sections */
+    .tech-box h2 {font-size:1.05rem;margin:0 0 8px}
+    .tech-box p {margin:0;color:var(--muted);font-size:0.95rem}
+
+    /* Секции */
     section{margin-top:36px;margin-bottom:36px}
-    .card{background:var(--card);border-radius:12px;padding:24px;box-shadow:0 8px 30px rgba(2,6,23,0.04)}
-    h2.section-title{font-size:1.25rem;margin:0 0 12px}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .subtle{font-size:0.95rem;color:var(--muted)}
-
-    /* Footer */
-    footer{padding:24px 0;color:var(--muted);text-align:center;font-size:0.95rem}
-
-    /* Under-construction banner */
-    .banner{
-      background:linear-gradient(90deg,#fff4d9,#f7f7f7);
-      border:1px solid rgba(0,0,0,0.03);
-      padding:10px 12px;border-radius:8px;font-weight:600;color:#6b4a00;margin-bottom:18px;display:inline-block;
+    .card {
+      background:var(--card);
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.04)
     }
 
-    /* Responsive */
+    h2.section-title {font-size:1.25rem;margin:0 0 12px}
+    .muted {color:var(--muted)}
+    .grid {display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .subtle {font-size:0.95rem;color:var(--muted)}
+
+    /* Footer */
+    footer {
+      padding:24px 0;
+      color:var(--muted);
+      text-align:center;
+      font-size:0.95rem;
+    }
+
+    /* Banner */
+    .banner {
+      background:linear-gradient(90deg,#fff4d9,#f7f7f7);
+      border:1px solid rgba(0,0,0,0.03);
+      padding:10px 12px;
+      border-radius:8px;
+      font-weight:600;
+      color:#6b4a00;
+      margin-bottom:18px;
+      display:inline-block;
+    }
+
+    /* Адаптив */
     @media (max-width:900px){
       .tech-box{max-width:100%;width:100%}
       .hero-card{flex-direction:column;align-items:stretch}
       .grid{grid-template-columns:1fr}
+      .brand img {height:48px}
     }
   </style>
 </head>
 <body>
+  <!-- === HEADER === -->
   <header>
-    <div class="container">
+    <div class="header-container">
       <div class="brand">
         <img src="savegulfstream.jpg" alt="Save Gulf Stream logo">
-        <div>
-          <div style="font-weight:800">Save Gulf Stream</div>
-          <div style="font-size:0.85rem;opacity:0.9">savegulfstream.org</div>
+        <div class="brand-text">
+          <div class="title">Save Gulf Stream</div>
+          <div class="subtitle">savegulfstream.org</div>
         </div>
       </div>
 
@@ -146,20 +245,22 @@
     </div>
   </header>
 
-  <main class="container" role="main">
-    <!-- Under construction banner -->
+  <!-- === MAIN === -->
+  <main class="container" role="main" style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
+    <!-- Banner -->
     <div style="margin-top:18px;">
       <span class="banner">This website is under construction. If something doesn’t work — don’t worry. We will fix it, just as we will fix the Gulf Stream.</span>
     </div>
 
-    <!-- Hero / Technology top (prominent) -->
+    <!-- Hero -->
     <section id="technology" class="hero" aria-labelledby="tech-heading">
       <div class="hero-card" role="region" aria-label="Technology summary">
         <div class="left">
           <span class="kicker">Technology — Top Priority</span>
           <h1 id="tech-heading">Protecting the AMOC and the Gulf Stream</h1>
-          <p class="lead">The Atlantic Meridional Overturning Circulation (AMOC) and its key component — the Gulf Stream — face the risk of slowdown or collapse due to freshwater runoff from the Greenland Ice Sheet. Although the total freshwater volume is small on an oceanic scale, it forms a light surface layer that disrupts heat exchange and ocean circulation.</p>
-
+          <p class="lead">
+            The Atlantic Meridional Overturning Circulation (AMOC) and its key component — the Gulf Stream — face the risk of slowdown or collapse due to freshwater runoff from the Greenland Ice Sheet. Although the total freshwater volume is small on an oceanic scale, it forms a light surface layer that disrupts heat exchange and ocean circulation.
+          </p>
           <div class="cta-row">
             <a class="btn" href="#watson">Explore Watson River plan</a>
             <a class="btn secondary" href="#freshwater">Learn how freshwater behaves</a>
@@ -168,23 +269,23 @@
 
         <aside class="tech-box" aria-label="Technical summary">
           <h2>Our approach (brief)</h2>
-          <p>Redirect small rivers, streams and fjord outflows into pipes that discharge at depths of <strong>50–200 meters</strong> (exact depth depends on local hydrography). Freshwater released at depth rises turbulently, mixes with saline water, removes the sharp surface salinity gradient and prevents the formation of a persistent fresh lens that would block AMOC.</p>
+          <p>
+            Redirect small rivers, streams and fjord outflows into pipes that discharge at depths of <strong>50–200 meters</strong> (exact depth depends on local hydrography). Freshwater released at depth rises turbulently, mixes with saline water, removes the sharp surface salinity gradient and prevents the formation of a persistent fresh lens that would block AMOC.
+          </p>
         </aside>
       </div>
     </section>
 
-    <!-- Full Technology details -->
+    <!-- Technology details -->
     <section>
       <div class="card">
         <h2 class="section-title">Technology — detailed explanation</h2>
         <p class="subtle">Our project offers a fast, reliable, and cost-effective means to reduce the formation of a near-surface freshwater layer that disrupts large-scale Atlantic circulation.</p>
-
         <div style="margin-top:18px" class="grid" role="list">
           <div role="listitem">
             <h3 style="margin:0 0 8px">Mechanism of disruption</h3>
             <p class="muted">Freshwater runoff from Greenland accumulates at the ocean surface because it is significantly less dense than seawater. This thin surface layer reduces vertical mixing and heat exchange, weakening the AMOC and the Gulf Stream.</p>
           </div>
-
           <div role="listitem">
             <h3 style="margin:0 0 8px">Our solution</h3>
             <p class="muted">Convey freshwater in pipes and release it at depth. As the freshwater plume rises, it entrains large volumes of saline water, rapidly increasing salinity at the surface region and accelerating vertical mixing by wind and waves. The result: the surface fresh lens does not form or persists for a shorter time, allowing AMOC/Gulf Stream recovery over a few years.</p>
@@ -198,29 +299,24 @@
       <div class="card">
         <h2 class="section-title">Watson River</h2>
         <p class="subtle">The Watson River discharges up to <strong>7 cubic kilometers</strong> of water per year. It is similar to many Greenland rivers but among the largest — making it an ideal demonstration site for our approach.</p>
-
         <p class="muted" style="margin-top:12px">Plan: anchor a pipe on the riverbank above sea level, carry the flow to approximately <strong>100 meters depth</strong>, and release freshwater through specially designed outlets. As the freshwater plume rises, it will entrain massive volumes of saltwater from depth, producing a mixed column that reaches the surface with near-ocean salinity.</p>
-
         <p class="muted" style="margin-top:12px"><strong>Estimated cost:</strong> tens of millions of dollars for a single large river deployment. Compared to the global consequences of a Gulf Stream collapse, this is a cost-effective prevention measure.</p>
       </div>
     </section>
 
-    <!-- Freshwater section with subsections -->
+    <!-- Freshwater -->
     <section id="freshwater">
       <div class="card">
         <h2 class="section-title">Freshwater: Rivers and Icebergs</h2>
         <p class="subtle">Greenland will remain a significant source of freshwater to the ocean for years to come. Different freshwater sources behave differently and their contributions to forming a persistent freshwater surface layer are not equivalent.</p>
-
         <div style="margin-top:18px">
           <h3 style="margin-bottom:8px">Icebergs</h3>
           <p class="muted">Icebergs often dissolve rather than melt at the very surface. A thin layer of surface meltwater near the iceberg is rapidly mixed by ocean water; because the iceberg is cold and extensive, much of its melt mixes downward. Freshwater from icebergs is typically noticeable within ~100 meters of the berg and becomes negligible at ~500 meters.</p>
         </div>
-
         <div style="margin-top:14px">
           <h3 style="margin-bottom:8px">Submarine discharge</h3>
           <p class="muted">Submarine outflows that enter the ocean at depths of hundreds of meters rise along ice faces, strongly entrain saltwater and nutrients from below, and promote vertical mixing. They do not create stable fresh lenses at the surface and are dispersed faster by waves and currents.</p>
         </div>
-
         <div style="margin-top:14px">
           <h3 style="margin-bottom:8px">Surface rivers</h3>
           <p class="muted">Surface river outflows are fresh, often warmed to around +10 °C, and contain suspended sediments. They form stable surface layers that are relatively resistant to mixing, block solar penetration, remain warm and buoyant, and therefore are especially effective at disrupting warm surface waters carried by the Gulf Stream and AMOC.</p>
@@ -233,36 +329,33 @@
       <div class="card">
         <h2 class="section-title">Jakobshavn (example of a large challenge)</h2>
         <p class="subtle">Jakobshavn is Greenland’s fastest glacier and one of the largest freshwater sources — reaching peak discharges up to several thousand tonnes per second during summer (not counting icebergs). Its outflow drains into Ilulissat Fjord and then Disko Bay.</p>
-
         <p class="muted" style="margin-top:12px">Addressing the Jakobshavn outflow is a larger, more complex task than redirecting typical rivers. Possible approaches include pumping surface freshwater into deep pipes and releasing it at depth so it entrains saline water and returns to the surface with much higher salinity.</p>
-
         <p class="muted" style="margin-top:12px"><strong>Energy estimate:</strong> peak power might approach ~100 MW to treat the largest summer discharges. While substantial, such systems are feasible using distributed power sources and are still competitive when compared to the cost of global climate disruption.</p>
-
         <p class="muted" style="margin-top:12px"><em>Note:</em> these are preliminary calculations and concepts; each large deployment requires detailed local hydrographic and engineering studies.</p>
       </div>
     </section>
 
-    <!-- Contact / Call to action -->
+    <!-- Contact -->
     <section id="contact">
       <div class="card">
         <h2 class="section-title">Get in touch</h2>
         <p class="subtle">For collaboration, technical details, donations, or partnership inquiries, contact us:</p>
         <p style="margin-top:12px;font-weight:700"><a href="mailto:info@savegulfstream.org">info@savegulfstream.org</a></p>
-
         <p class="muted" style="margin-top:10px">This page will be expanded with technical appendices, data, and project roadmaps as the site is developed.</p>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <div class="container">
+    <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
       <div style="margin-bottom:8px">© <span id="year"></span> Save Gulf Stream — savegulfstream.org</div>
       <div class="muted">All content presented here is conceptual and intended for discussion and development of practical solutions for ocean circulation protection.</div>
     </div>
   </footer>
 
   <script>
-    // set current year
+    // Current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
