@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -15,6 +15,7 @@
       --muted:#6b7280;
       --card:#ffffff;
       --maxw:1100px;
+      --sidebar-width:280px;
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
@@ -28,6 +29,8 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+      display:flex;
+      flex-direction:column;
     }
 
     a{color:inherit;text-decoration:none}
@@ -51,7 +54,6 @@
       justify-content: space-between;
     }
 
-    /* Блок слева: логотип + название */
     .brand {
       display: flex;
       align-items: center;
@@ -84,147 +86,172 @@
       opacity: 0.9;
     }
 
-    /* Меню */
-    header nav {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    header nav a {
-      color: rgba(255,255,255,0.95);
-      font-weight: 600;
-      transition: opacity 0.2s ease;
-    }
-
-    header nav a:hover {
-      opacity: 0.8;
-    }
-
     header .contact {
       font-size: 0.95rem;
       font-weight: 600;
-      margin-left: 18px;
     }
 
-    /* === HERO === */
-    .hero {
-      display:grid;
-      grid-template-columns:1fr;
-      gap:28px;
-      align-items:center;
-      padding:48px 0;
+    /* === MAIN CONTAINER === */
+    .two-column-container {
+      flex: 1;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      width: 100%;
+      padding: 24px 20px;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      gap: 24px;
+      align-items: start;
     }
 
-    .hero-card {
-      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
-      border-radius:14px;
-      box-shadow:0 18px 50px rgba(2,6,23,0.10);
-      padding:32px;
-      display:flex;
-      gap:28px;
-      align-items:center;
+    /* === LEFT SIDEBAR - RUBRICS === */
+    .sidebar {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.04);
+      position: sticky;
+      top: 100px;
     }
 
-    .left { flex:1; }
-
-    .kicker {
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#eaf3ff;
-      color:var(--accent);
-      font-weight:700;
-      font-size:0.85rem;
+    .rubrics-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    h1 {margin:14px 0 8px;font-size:1.8rem}
-    p.lead {margin:0;color:var(--muted);font-size:1.02rem}
-
-    .cta-row {
-      margin-top:18px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
+    .rubrics-list li {
+      margin-bottom: 8px;
     }
 
-    .btn {
-      background:var(--accent);
-      color:white;
-      padding:12px 18px;
-      border-radius:10px;
-      font-weight:700;
-      box-shadow:0 10px 22px rgba(2,6,23,0.12);
-      border:none;
-      cursor:pointer;
-      text-decoration:none;
+    .rubrics-list a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: var(--muted);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
-    .btn.secondary {
-      background:transparent;
-      color:var(--accent);
-      border:2px solid rgba(0,75,135,0.12);
+    .rubrics-list a:hover {
+      background: #eaf3ff;
+      color: var(--accent);
     }
 
-    /* Блок справа */
-    .tech-box {
-      width:360px;
-      max-width:38%;
-      background:linear-gradient(180deg,#fbfdff,#ffffff);
-      border-radius:12px;
-      padding:18px;
-      border:1px solid rgba(2,6,23,0.04);
-      box-shadow:0 8px 30px rgba(2,6,23,0.06);
+    .rubrics-list a.active {
+      background: var(--accent);
+      color: white;
     }
 
-    .tech-box h2 {font-size:1.05rem;margin:0 0 8px}
-    .tech-box p {margin:0;color:var(--muted);font-size:0.95rem}
-
-    /* Секции */
-    section{margin-top:36px;margin-bottom:36px}
-    .card {
-      background:var(--card);
-      border-radius:12px;
-      padding:24px;
-      box-shadow:0 8px 30px rgba(2,6,23,0.04)
+    /* === RIGHT COLUMN - ARTICLES === */
+    .main-content {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.04);
     }
 
-    h2.section-title {font-size:1.25rem;margin:0 0 12px}
-    .muted {color:var(--muted)}
-    .grid {display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .subtle {font-size:0.95rem;color:var(--muted)}
+    /* Articles hidden by default */
+    .article-section {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-    /* Footer */
-    footer {
-      padding:24px 0;
-      color:var(--muted);
-      text-align:center;
-      font-size:0.95rem;
+    .article-section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .article-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(2,6,23,0.06);
+    }
+
+    .article-title {
+      font-size: 1.8rem;
+      margin: 0 0 8px 0;
+      color: var(--accent);
+    }
+
+    .article-content {
+      line-height: 1.6;
+    }
+
+    .article-content h2 {
+      margin: 24px 0 12px 0;
+      font-size: 1.4rem;
+      color: var(--red);
+    }
+
+    .article-content h3 {
+      margin: 20px 0 10px 0;
+      font-size: 1.2rem;
+      color: var(--red);
+    }
+
+    .article-content p {
+      margin: 0 0 16px 0;
+    }
+
+    .article-content strong {
+      color: var(--accent);
     }
 
     /* Banner */
     .banner {
-      background:linear-gradient(90deg,#fff4d9,#f7f7f7);
-      border:1px solid rgba(0,0,0,0.03);
-      padding:10px 12px;
-      border-radius:8px;
-      font-weight:600;
-      color:#6b4a00;
-      margin-bottom:18px;
-      display:inline-block;
+      background: linear-gradient(90deg,#fff4d9,#f7f7f7);
+      border: 1px solid rgba(0,0,0,0.03);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #6b4a00;
+      margin-bottom: 18px;
+      display: inline-block;
     }
 
-    /* Адаптив */
+    /* Footer */
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    /* Responsive */
     @media (max-width:900px){
-      .tech-box{max-width:100%;width:100%}
-      .hero-card{flex-direction:column;align-items:stretch}
-      .grid{grid-template-columns:1fr}
-      .brand img {height:48px}
+      .two-column-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .sidebar {
+        position: static;
+        padding: 16px;
+      }
+      
+      .rubrics-list {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .rubrics-list li {
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+      
+      .brand img {
+        height: 48px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- === HEADER === -->
   <header>
     <div class="header-container">
       <div class="brand">
@@ -234,138 +261,206 @@
           <div class="subtitle">savegulfstream.org</div>
         </div>
       </div>
-
-      <nav aria-label="Main navigation">
-        <a href="#technology">Technology</a>
-        <a href="#watson">Watson River</a>
-        <a href="#freshwater">Freshwater</a>
-        <a href="#jakobshavn">Jakobshavn</a>
-        <a href="#contact" class="contact">info@savegulfstream.org</a>
-      </nav>
+      <a href="mailto:info@savegulfstream.org" class="contact">info@savegulfstream.org</a>
     </div>
   </header>
 
-  <!-- === MAIN === -->
-  <main class="container" role="main" style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
-    <!-- Banner -->
-    <div style="margin-top:18px;">
-      <span class="banner">This website is under construction. If something doesn’t work — don’t worry. We will fix it, just as we will fix the Gulf Stream.</span>
-    </div>
+  <div class="two-column-container">
+    
+    <aside class="sidebar" aria-label="Categories">
+      <ul class="rubrics-list">
+        <li><a href="#" data-article-id="technology" class="active">Technology</a></li>
+        <li><a href="#" data-article-id="model">Modeling</a></li>
+        <li><a href="#" data-article-id="state">State</a></li>
+        <li><a href="#" data-article-id="eco">Ecology</a></li>
+      </ul>
+    </aside>
 
-    <!-- Hero -->
-    <section id="technology" class="hero" aria-labelledby="tech-heading">
-      <div class="hero-card" role="region" aria-label="Technology summary">
-        <div class="left">
-          <span class="kicker">Technology — Top Priority</span>
-          <h1 id="tech-heading">Protecting the AMOC and the Gulf Stream</h1>
-          <p class="lead">
-            The Atlantic Meridional Overturning Circulation (AMOC) and its key component — the Gulf Stream — face the risk of slowdown or collapse due to freshwater runoff from the Greenland Ice Sheet. Although the total freshwater volume is small on an oceanic scale, it forms a light surface layer that disrupts heat exchange and ocean circulation.
-          </p>
-          <div class="cta-row">
-            <a class="btn" href="#watson">Explore Watson River plan</a>
-            <a class="btn secondary" href="#freshwater">Learn how freshwater behaves</a>
+    <main class="main-content" role="main">
+      <div class="banner">This website is under construction. If something doesn't work — don't worry. We will fix it, just as we will fix the Gulf Stream.</div>
+
+      <section id="technology" class="article-section active">
+        <article>
+          <div class="article-header">
+            <h1 class="article-title">Geoengineering basis for protection against the AMOC/Gulf Stream collapse.</h1>
           </div>
-        </div>
+          <div class="article-content">
+            
+            <h2>Briefly on the problem</h2>
+            <p>
+              Greenland dumps approximately 350 cubic km of excess fresh water into the Atlantic every year. This fresh water blocks the thermohaline circulation and the AMOC slows down, gives off heat more slowly, and reduces winter precipitation. In the southern latitudes, heat export is blocked, which leads to powerful typhoons and floods. If nothing is done, the probability of the AMOC/Gulf Stream stopping in the next 10–40 years is already above 50%.
+            </p>
 
-        <aside class="tech-box" aria-label="Technical summary">
-          <h2>Our approach (brief)</h2>
-          <p>
-            Redirect small rivers, streams and fjord outflows into pipes that discharge at depths of <strong>50–200 meters</strong> (exact depth depends on local hydrography). Freshwater released at depth rises turbulently, mixes with saline water, removes the sharp surface salinity gradient and prevents the formation of a persistent fresh lens that would block AMOC.
-          </p>
-        </aside>
-      </div>
-    </section>
+            <h2>Briefly on the solution</h2>
+            <p>
+              In the 25 largest fjords of Greenland, we install a standard floating curtain, typically 2–3 km long (almost all fjords have such a natural constriction) and 60 meters deep. Each fjord collects fresh water runoff from approximately 15-20 thousand sq km, draining about 10 cubic km of fresh water in the summer.
+            </p>
 
-    <!-- Technology details -->
-    <section>
-      <div class="card">
-        <h2 class="section-title">Technology — detailed explanation</h2>
-        <p class="subtle">Our project offers a fast, reliable, and cost-effective means to reduce the formation of a near-surface freshwater layer that disrupts large-scale Atlantic circulation.</p>
-        <div style="margin-top:18px" class="grid" role="list">
-          <div role="listitem">
-            <h3 style="margin:0 0 8px">Mechanism of disruption</h3>
-            <p class="muted">Freshwater runoff from Greenland accumulates at the ocean surface because it is significantly less dense than seawater. This thin surface layer reduces vertical mixing and heat exchange, weakening the AMOC and the Gulf Stream.</p>
+            <h2>How it works (for non-physicists)</h2>
+            <ul>
+              <li>Fresh water from the glacier always flows on top, along the fjord in a layer 20-40 m thick.</li>
+              <li>The curtain blocks its direct exit to the ocean.</li>
+              <li>To escape, the fresh water is forced to accumulate, mix with saline water, and dive under the lower edge of the curtain. We assume salinity there is 30.</li>
+              <li>There it immediately mixes with normal saline Atlantic water at 35 ppt.</li>
+              <li>The less saline water begins to rise, mix, and at the surface, it becomes approximately 34 ppt. It reaches the surface because the freshwater flow is blocked at the top and there is simply no lighter water on the ocean side of the curtain.</li>
+              <li>Since new rising water is pressing on it from below, it has only one path—to exit into the ocean as a current.</li>
+              <li>In the ocean at the mouth of the fjord, it spreads out in a large patch (kilometers and tens of kilometers in diameter) and literally displaces/washes out the accumulated fresh water from there, mixing with it.</li>
+              <li>In winter, this patch cools and sinks, initiating natural convection, which over six months draws hundreds of cubic kilometers of fresh water into the deep ocean and replaces it with normal saline water.</li>
+              <li>Since we accumulated fresh water in the fjord, it exits not in a single discharge in summer, but uniformly, and during autumn, and winter, providing the cold of the polar night and the warm water of the Atlantic with an interlayers of dense saline water.</li>
+              <li>Preliminary figures: 5 cubic km of fresh water mixing with an unlimited volume of ocean water to a salinity of 34 yields 175 cubic km of such water, over the winter season—1 cubic kilometer per day exiting the fjord uniformly. Or a patch 100 meters thick and 10 sq km in area.</li>
+              <li>Salinity parameters are approximate and depend on the season, the fjord, and the curtain settings.</li>
+            </ul>
+
+            <p>
+              One curtain leads to one stable saline patch which is carried out into the ocean. There, this current strikes the West Greenland Current at a 90 degree angle. The inertia of this movement ensures active mixing. The combination of several such patches has a chance to form a structure 5-10 kilometers in diameter (eddy) that possesses its own stability and can become the core for initiating convection.
+            </p>
+
+            <p>
+              Naturally, all these hypotheses need to be modeled on specialized computers and verified climate models.
+            </p>
+
           </div>
-          <div role="listitem">
-            <h3 style="margin:0 0 8px">Our solution</h3>
-            <p class="muted">Convey freshwater in pipes and release it at depth. As the freshwater plume rises, it entrains large volumes of saline water, rapidly increasing salinity at the surface region and accelerating vertical mixing by wind and waves. The result: the surface fresh lens does not form or persists for a shorter time, allowing AMOC/Gulf Stream recovery over a few years.</p>
+        </article>
+      </section>
+
+      <section id="model" class="article-section">
+        <article>
+          <div class="article-content">
+            <h2>Modeling and Experimental Validation</h2>
+            <p>
+              Existing fjord hydrodynamics models (MITgcm, ROMS, FVCOM) accurately reproduce tidal processes, baroclinic pressure, and glacial runoff in an open water column. Installation of a barrier at 50 m depth introduces uncertainty in key parameter estimation. No data exist on the rate of salinization of the freshwater lens beneath the barrier via tidal bottom friction and entrainment from the 100 m horizon. Peak loads on the anchor system from interaction between accumulated hydrostatic head and ebb currents remain undefined. The salinity gradient in the mixing zone beneath the curtain—and consequently, the characteristics of the outflowing oceanic stream (volume, density)—are unknown. Preliminary estimates are hypothetical, while impact calculations at the Labrador Sea scale require quantitative data.
+            </p>
+            
+            <h2>Required Sequence of Actions:</h2>
+            <ol>
+              <li>
+                <h3>High-resolution modeling of a fjord with barrier.</h3>
+                <p>A three-dimensional simulation with horizontal resolution ≤ 100 m and vertical resolution ≤ 2 m is required. Includes: multibeam bathymetry; tidal forcing from TPXO data; seasonal glacial runoff; vertical mixing parameterization (k-ε or k-ω) accounting for internal waves; calculation of barrier deformation and tension as a flexible structure. Output: time series of velocity, salinity, and temperature beneath the barrier, plus anchor stress fields.</p>
+              </li>
+              <li>
+                <h3>Pilot project in field conditions.</h3>
+                <p>Partial or complete closure of a fjord with 1–2 km³ annual runoff. Mobile pontoon structure on 6 anchors, design wave load Hs = 3 m. Measurements: ADCP beneath barrier, CTD profiling, tensiometers, acoustic deformation sensor. Duration: one runoff season (June–November).</p>
+              </li>
+              <li>
+                <h3>Model calibration using field measurement data.</h3>
+                <p>ADCP provides outflow velocity profiles; CTD supplies salinity gradients; tension sensors yield peak loads. Calibration of entrainment coefficient and source geometry eliminates theoretical inaccuracies.</p>
+              </li>
+              <li>
+                <h3>Regional modeling of impact on Labrador Sea and Atlantic.</h3>
+                <p>Nested eddy-permitting MITgcm/NEMO domain with 2–4 km resolution. Calibrated forcing from points 1–3 is implemented at the mouths of three fjords.</p>
+                <h3>Objectives:</h3>
+                <ul style="margin-top: 0.5em;">
+                  <li>Water parcel descent to 400–800 m and interaction with deep cold layers;</li>
+                  <li>Signal propagation to the 200 m horizon where warm Atlantic water occurs (depths do not everywhere reach 800 m);</li>
+                  <li>Changes in NADW export in multi-year integration;</li>
+                  <li>Assessment of surface salinity impact area.</li>
+                </ul>
+              </li>
+            </ol>
+            <p>
+              Implementation of the fourth stage without preceding data is limited to theoretical assumptions. With them, it becomes a predictable engineered climate intervention.
+            </p>
           </div>
-        </div>
-      </div>
-    </section>
+        </article>
+      </section>
 
-    <!-- Watson River -->
-    <section id="watson">
-      <div class="card">
-        <h2 class="section-title">Watson River</h2>
-        <p class="subtle">The Watson River discharges up to <strong>7 cubic kilometers</strong> of water per year. It is similar to many Greenland rivers but among the largest — making it an ideal demonstration site for our approach.</p>
-        <p class="muted" style="margin-top:12px">Plan: anchor a pipe on the riverbank above sea level, carry the flow to approximately <strong>100 meters depth</strong>, and release freshwater through specially designed outlets. As the freshwater plume rises, it will entrain massive volumes of saltwater from depth, producing a mixed column that reaches the surface with near-ocean salinity.</p>
-        <p class="muted" style="margin-top:12px"><strong>Estimated cost:</strong> tens of millions of dollars for a single large river deployment. Compared to the global consequences of a Gulf Stream collapse, this is a cost-effective prevention measure.</p>
-      </div>
-    </section>
+      <section id="state" class="article-section">
+        <article>
+          <div class="article-content">
+            <h2>State</h2>
+            <p>
+              Obviously, the implementation of such a project is impossible without state involvement and permission. However, this does not mean that we consider inaction and waiting for decisions from state unions and international organizations to be the best solution.
+            </p>
+            <p>
+              We call on individual countries, political forces, and public organizations to formulate their position regarding the elimination of such a huge climate risk as the stopping of AMOC.
+            </p>
+            <p>
+              This project potentially opens up huge opportunities for building a proactive, active, and strategic position, and we will be happy to provide any necessary clarifications.
+            </p>
+          </div>
+        </article>
+      </section>
 
-    <!-- Freshwater -->
-    <section id="freshwater">
-      <div class="card">
-        <h2 class="section-title">Freshwater: Rivers and Icebergs</h2>
-        <p class="subtle">Greenland will remain a significant source of freshwater to the ocean for years to come. Different freshwater sources behave differently and their contributions to forming a persistent freshwater surface layer are not equivalent.</p>
-        <div style="margin-top:18px">
-          <h3 style="margin-bottom:8px">Icebergs</h3>
-          <p class="muted">Icebergs often dissolve rather than melt at the very surface. A thin layer of surface meltwater near the iceberg is rapidly mixed by ocean water; because the iceberg is cold and extensive, much of its melt mixes downward. Freshwater from icebergs is typically noticeable within ~100 meters of the berg and becomes negligible at ~500 meters.</p>
-        </div>
-        <div style="margin-top:14px">
-          <h3 style="margin-bottom:8px">Submarine discharge</h3>
-          <p class="muted">Submarine outflows that enter the ocean at depths of hundreds of meters rise along ice faces, strongly entrain saltwater and nutrients from below, and promote vertical mixing. They do not create stable fresh lenses at the surface and are dispersed faster by waves and currents.</p>
-        </div>
-        <div style="margin-top:14px">
-          <h3 style="margin-bottom:8px">Surface rivers</h3>
-          <p class="muted">Surface river outflows are fresh, often warmed to around +10 °C, and contain suspended sediments. They form stable surface layers that are relatively resistant to mixing, block solar penetration, remain warm and buoyant, and therefore are especially effective at disrupting warm surface waters carried by the Gulf Stream and AMOC.</p>
-        </div>
-      </div>
-    </section>
+      <section id="eco" class="article-section">
+        <article>
+          <div class="article-content">
+            <h2>Ecology</h2>
+            <p>
+              Several countries have expressed opposition to barrier and enclosure technologies for ecological reasons, arguing that such curtains turn fjords into swamps. This is not the case here. The passage below 50 meters remains open not only to fish but also to marine mammals. Constant upwelling drives a powerful ascent of deep water and, critically, winter ice melt, which maintains extensive polynyas (spanning square kilometers) and prevents mass fish kills from winter hypoxia. Moreover, the gradual consumption of fresh water smoothes salinity fluctuations, reducing stress on the ecosystem. Naturally, a complete inventory of potential effects warrants separate dedicated research.
+            </p>
+            <p>
+              Additionally, the curtain is almost entirely submerged and does not affect the landscape, cultural perception, or historical interpretation of the environment where it is installed.
+            </p>
+          </div>
+        </article>
+      </section>
 
-    <!-- Jakobshavn -->
-    <section id="jakobshavn">
-      <div class="card">
-        <h2 class="section-title">Jakobshavn (example of a large challenge)</h2>
-        <p class="subtle">Jakobshavn is Greenland’s fastest glacier and one of the largest freshwater sources — reaching peak discharges up to several thousand tonnes per second during summer (not counting icebergs). Its outflow drains into Ilulissat Fjord and then Disko Bay.</p>
-        <p class="muted" style="margin-top:12px">Addressing the Jakobshavn outflow is a larger, more complex task than redirecting typical rivers. Possible approaches include pumping surface freshwater into deep pipes and releasing it at depth so it entrains saline water and returns to the surface with much higher salinity.</p>
-        <p class="muted" style="margin-top:12px"><strong>Energy estimate:</strong> peak power might approach ~100 MW to treat the largest summer discharges. While substantial, such systems are feasible using distributed power sources and are still competitive when compared to the cost of global climate disruption.</p>
+    </main>
+  </div>
 
-        <!-- Новый текст о подлёдном стоке -->
-        <p class="muted" style="margin-top:12px">
-          There is also significant subglacial runoff. Higher up, deeper into the continent, one can always find a zone along a fjord wall that provides a path to a deposit of freshwater under the glacier. By using the pressure difference caused by the mass of the glacier and the runoff heights, this water can be redirected into the ocean in the same way. Incidentally, as a bonus, this should significantly reduce the glacier's sliding speed.
-        </p>
-        <p class="muted" style="margin-top:12px">
-          We do not need to lay a pipe for a hundred kilometers to the exit of the fjord. In any of them, there is the same vertical stratification of water: fresh water on top, saline ocean water below. If we release the water at a depth of 100-200 meters, it rises, flows out of the fjord on top, and saline water enters from below at the fjord's entrance.
-        </p>
-
-        <p class="muted" style="margin-top:12px"><em>Note:</em> these are preliminary calculations and concepts; each large deployment requires detailed local hydrographic and engineering studies.</p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <div class="card">
-        <h2 class="section-title">Get in touch</h2>
-        <p class="subtle">For collaboration, technical details, donations, or partnership inquiries, contact us:</p>
-        <p style="margin-top:12px;font-weight:700"><a href="mailto:info@savegulfstream.org">info@savegulfstream.org</a></p>
-        <p class="muted" style="margin-top:10px">This page will be expanded with technical appendices, data, and project roadmaps as the site is developed.</p>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
   <footer>
     <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
       <div style="margin-bottom:8px">© <span id="year"></span> Save Gulf Stream — savegulfstream.org</div>
-      <div class="muted">All content presented here is conceptual and intended for discussion and development of practical solutions for ocean circulation protection.</div>
+      <div style="color:var(--muted)">All content presented here is conceptual and intended for discussion and development of practical solutions for ocean circulation protection.</div>
     </div>
   </footer>
 
   <script>
     // Current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // === ARTICLE SWITCHING SYSTEM ===
+    
+    // Show selected article and hide others
+    function showArticle(articleId) {
+      // Hide all articles
+      const allArticles = document.querySelectorAll('.article-section');
+      allArticles.forEach(article => {
+        article.classList.remove('active');
+      });
+
+      // Remove active class from all menu links
+      const allLinks = document.querySelectorAll('.rubrics-list a');
+      allLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Show selected article
+      const targetArticle = document.getElementById(articleId);
+      if (targetArticle) {
+        targetArticle.classList.add('active');
+      }
+
+      // Add active class to selected link
+      const targetLink = document.querySelector(`[data-article-id="${articleId}"]`);
+      if (targetLink) {
+        targetLink.classList.add('active');
+      }
+
+      // Update URL hash for direct links
+      window.location.hash = articleId;
+      
+      // Scroll to top to prevent jumping
+      window.scrollTo(0, 0);
+    }
+
+    // Add click handlers to all menu items
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuLinks = document.querySelectorAll('.rubrics-list a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault(); // Prevent link navigation
+          e.stopPropagation(); // Stop event bubbling
+          const articleId = this.getAttribute('data-article-id');
+          showArticle(articleId);
+          return false;
+        });
+      });
+
+      // Open article from URL hash on page load
+      const initialArticle = window.location.hash ? window.location.hash.substring(1) : 'technology';
+      showArticle(initialArticle);
+    });
   </script>
 </body>
 </html>
